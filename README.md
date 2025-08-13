@@ -1,36 +1,51 @@
-# Installing Node.js and npm on Ubuntu 22.04
+# Install Popular Dependencies on Ubuntu 22.04
+## Installing Popular Dependencies
 
-This guide explains how to install **Node.js** and **npm** on Ubuntu 22.04 using the official NodeSource repository.
+Run the following command to install a set of commonly used development and system administration tools on Ubuntu:
 
-## Steps
-
-### 1. Update your package list
 ```bash
-sudo apt update && sudo apt upgrade -y
+sudo apt install curl screen iptables build-essential git wget lz4 jq make gcc nano automake autoconf tmux htop nvme-cli libgbm1 pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip libleveldb-dev ca-certificates -y
 ```
 
-### 2. Install required tools
+## Docker Compose (v2)
+
+Docker Compose v2 is included when you install the `docker-compose-plugin` (as shown above).  
+You use it with the `docker compose` command (note the space).
+
+### Check your Compose version
 ```bash
-sudo apt install -y curl
+docker compose version
 ```
 
-### 3. Add the NodeSource repository
-Replace `20.x` with your desired Node.js version if you want a different version.
-```bash
-curl -fsSL https://deb.nodesource.com/setup_20.x | sudo -E bash -
+### Quick test with a minimal Compose file
+Create a `docker-compose.yml`:
+```yaml
+services:
+  hello:
+    image: hello-world
 ```
 
-### 4. Install Node.js and npm
+Run it:
 ```bash
-sudo apt install -y nodejs
+docker compose up
 ```
 
-### 5. Verify the installation
+Stop and clean up:
 ```bash
-node -v
-npm -v
+docker compose down
 ```
 
-## Notes
-- If you need a different version of Node.js, change `20.x` to the desired version (e.g., `18.x`).
-- For more flexibility in switching Node.js versions, consider installing **nvm** (Node Version Manager).
+### Where is Compose installed?
+With v2, Compose is shipped as a Docker CLI plugin:
+- Linux path: `/usr/lib/docker/cli-plugins/docker-compose` (path can vary by distro)
+- Command name: `docker compose`
+
+> Note: Legacy `docker-compose` (v1) is deprecated. Prefer `docker compose` (v2).
+
+## Installing Popular Dependencies
+
+Run the following command to install a set of commonly used development and system administration tools on Ubuntu:
+
+```bash
+sudo apt install curl screen iptables build-essential git wget lz4 jq make gcc nano automake autoconf tmux htop nvme-cli libgbm1 pkg-config libssl-dev libleveldb-dev tar clang bsdmainutils ncdu unzip libleveldb-dev ca-certificates -y
+```
